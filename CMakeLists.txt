@@ -1,3 +1,3 @@
 project (arrays-lists)
 
-add_executable(arrays-lists main.cpp)
+add_executable(linked_list linked_list.cpp)
