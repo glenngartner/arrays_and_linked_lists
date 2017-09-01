@@ -47,6 +47,9 @@ int main()
     LinkedListItem *newNewFirstItem = makeListItem("Marky Mark");
     addToHead(newFirstItem, newNewFirstItem);
 
+    printBillboard("Sample Billboard", 'X', 30, true);
+    printBillboard("Second Sample Billboard", 'O', 30, true);
+
 	std::cin >> userInput; 
 	return 0;
 }

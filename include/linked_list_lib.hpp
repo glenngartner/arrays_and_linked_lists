@@ -39,6 +39,10 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem);
 
 void removeTail(LinkedListItem *firstItem);
 
+void printBillboard(std::string text, char borderCharacter, unsigned int borderLength, bool blankLineSandwich);
+
+void printBorder(char borderCharacter, unsigned int borderLength);
+
 LinkedListItem* removeHead(LinkedListItem *firstItem);
 
 LinkedListItem* lastListItem(LinkedListItem *firstItem);

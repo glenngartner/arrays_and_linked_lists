@@ -120,11 +120,7 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
     LinkedListItem *lastItem = lastListItem(firstItem);
     linkItems(lastItem, newItem);
     LinkedListItem *newLastItem = lastListItem(firstItem);
-    printf("\n");
-    printf("***************************************\n");
-    printf("New item added to the end of the list:\n");
-    printf("***************************************\n");
-    printf("\n");
+    printBillboard("New item added to the end of the list", '+', 50, true);
     printAllItemInfo(newItem);
     std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name << std::endl;
     std::cout << newLastItem->name << " is now last in the list" << std::endl;
@@ -132,10 +128,7 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
 
 void removeTail(LinkedListItem *firstItem) {
 
-    printf("\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-    printf("Deleting the last item in the list.\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printBillboard("Deleting the last item in the list", 'x', 40, true);
 
     LinkedListItem *currentItem = firstItem;
     while (currentItem->next->next != nullptr)
@@ -154,10 +147,7 @@ void removeTail(LinkedListItem *firstItem) {
 }
 
 LinkedListItem *removeHead(LinkedListItem *firstItem) {
-    printf("\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-    printf("Deleting the first item in the list.\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printBillboard("Deleting the first item in the list", 'x', 40, true);
     LinkedListItem *secondItem = firstItem->next;
     delete firstItem;
     std::cout << firstItem->name << " was deleted from the beginning of the list" << std::endl;
@@ -169,14 +159,35 @@ LinkedListItem *removeHead(LinkedListItem *firstItem) {
 }
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {
-    printf("\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-    printf("Adding new item to the head of the list.\n");
-    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printBillboard("Adding new item to the head of the list.", '+', 50, true);
 
     linkItems(newFirstItem, firstItem);
     std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
     printf("updating list\n");
     printEntireList(newFirstItem);
+}
+
+void printBillboard(std::string text, char borderCharacter, unsigned int borderLength, bool blankLineSandwich) {
+    if(blankLineSandwich)
+    {
+        printf("\n");
+    }
+    printBorder(borderCharacter, borderLength);
+    printf("\n");
+    std::cout << text;
+    printf("\n");
+    printBorder(borderCharacter, borderLength);
+    if(blankLineSandwich)
+    {
+        printf("\n\n");
+    }
+}
+
+void printBorder(char borderCharacter, unsigned int borderLength)
+{
+    for (int i = 1; i <= borderLength; i++)
+    {
+        std::cout << borderCharacter;
+    }
 }
 
