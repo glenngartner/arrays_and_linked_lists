@@ -64,9 +64,8 @@ void printDashedLine() {
     std::cout << "--------------------------------" << std::endl;
 }
 
-void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,
-                      std::array<LinkedListItem *, 6>& tempListItemArray, bool verbose) {
-//    std::array<LinkedListItem*, 6> tempListItemArray;
+void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose) {
+    std::array<LinkedListItem*, 6> tempListItemArray;
     tempListItemArray[0] = firstItem;
     for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {

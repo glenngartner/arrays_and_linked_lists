@@ -41,7 +41,6 @@ void removeTail(LinkedListItem *firstItem);
 
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 
-void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,
-                      std::array<LinkedListItem *, 6> &tempListItemArray, bool verbose);
+void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose);
 
 #endif // !linked_list

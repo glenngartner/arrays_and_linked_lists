@@ -13,25 +13,12 @@ int main()
 //    printArrayIndicesMemoryAddresses(array1, "array1");
 //    printArrayIndicesMemoryAddresses(array2, "array2");
 
-    LinkedListItem *item1 = makeListItem("matt");
-	LinkedListItem *item2 = makeListItem("carl");
-	LinkedListItem *item3 = makeListItem("steve");
-	LinkedListItem *item4 = makeListItem("frank");
-	LinkedListItem *item5 = makeListItem("mike");
-	LinkedListItem *item6 = makeListItem("blitzen");
-	linkItems(item1, item2);
-	linkItems(item2, item3);
-	linkItems(item3, item4);
-	linkItems(item4, item5);
-	linkItems(item5, item6);
-//	printAllItemInfo(&item1);
-//	printAllItemInfo(&item2);
-//	printAllItemInfo(&item3);
-//	printAllItemInfo(&item4);
-//	printAllItemInfo(&item5);
-//	printAllItemInfo(&item6);
+    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
+    LinkedListItem *item1 = makeListItem("Carl");
+    std::array<LinkedListItem*, 6> tempListItemArray;
+	createLinkedList(item1, names, true);
 
-    // print the length of the list
+	    // print the length of the list
     std::cout << "list length: "<< listLength(item1) << std::endl;
     printDashedLine();
 
@@ -51,15 +38,6 @@ int main()
 
     // remove the last item in the list
     removeTail(item1);
-
-
-//    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
-//    LinkedListItem item1 = makeListItem("Carl");
-//    std::array<LinkedListItem*, 6> tempListItemArray;
-//    createLinkedList(&item1, names, tempListItemArray, true);
-//
-//    printValue(&item1);
-//    printAllItemInfo(&item1);
 
 	std::cin >> userInput; 
 	return 0;
