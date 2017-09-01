@@ -96,7 +96,7 @@ int listLength(LinkedListItem *firstItem) {
 
 LinkedListItem *lastListItem(LinkedListItem *firstItem) {
     LinkedListItem * itemInScope = firstItem;
-    while (itemInScope->next != nullptr || itemInScope->next != NULL)
+    while (itemInScope->next != nullptr)
     {
         itemInScope = itemInScope->next;
     }
@@ -109,17 +109,12 @@ void printEntireList(LinkedListItem *firstItem) {
 //    printDashedLine();
 //    printf("Length: \n", length);
     LinkedListItem *itemInScope = firstItem;
-    while (true)
+    while (itemInScope->next != nullptr)
     {
         printAllItemInfo(itemInScope);
-
-        if (itemInScope->next == nullptr)
-        {
-            return;
-        } else {
-            itemInScope = itemInScope->next;
-        }
+        itemInScope = itemInScope->next;
     }
+    printAllItemInfo(itemInScope);
 }
 
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
