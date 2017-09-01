@@ -30,6 +30,8 @@ public:
     void removeListItemByName(std::string nameOfItemToRemove);
 
     void addItemToHeadByName(std::string newItemName);
+
+    void printItemDetailsByName(std::string name);
 };
 
 

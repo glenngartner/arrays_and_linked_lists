@@ -52,3 +52,10 @@ void LinkedList::whoIsMyHead() {
     std::string name = LinkedList::firstItem->name + " is my head";
     printBillboard(name, '=', 20, true);
 }
+
+void LinkedList::printItemDetailsByName(std::string name) {
+    LinkedListItem* item = findItemByName(LinkedList::firstItem, name);
+    std::string printString= "Details on " + item->name;
+    printBillboard(printString, 'o', 25, true);
+    printAllItemInfo(item);
+}

@@ -59,4 +59,6 @@ void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem);
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose);
 
+bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind);
+
 #endif // !linked_list

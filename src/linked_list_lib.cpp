@@ -130,20 +130,24 @@ void removeTail(LinkedListItem *firstItem) {
 
     printBillboard("Deleting the last item in the list", 'x', 40, true);
 
-    LinkedListItem *currentItem = firstItem;
-    while (currentItem->next->next != nullptr)
+    if (firstItem->next == nullptr)
     {
-        currentItem = currentItem->next;
-    }
-    std::string nameToDelete = currentItem->next->name;
-    delete currentItem->next;
-    currentItem->next = nullptr;
-    std::cout << nameToDelete << " has been deleted" << std::endl;
+        printf("There's only one item in the list, so I'm deleting nothing\n");
+        printf("Your list is unchanged\n");
+    } else {
+        LinkedListItem *currentItem = firstItem;
+        while (currentItem->next->next != nullptr)
+        {
+            currentItem = currentItem->next;
+        }
+        std::string nameToDelete = currentItem->next->name;
+        delete currentItem->next;
+        currentItem->next = nullptr;
+        std::cout << nameToDelete << " has been deleted" << std::endl;
 
-//    lastItem = NULL;
-//    delete lastItem;
-    LinkedListItem *newLastItem = lastListItem(firstItem);
-    std::cout << newLastItem->name << " is now the last in the list" << std::endl;
+        LinkedListItem *newLastItem = lastListItem(firstItem);
+        std::cout << newLastItem->name << " is now the last in the list" << std::endl;
+    }
 }
 
 LinkedListItem *removeHead(LinkedListItem *firstItem) {
@@ -194,27 +198,37 @@ void printBorder(char borderCharacter, unsigned int borderLength)
 void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove) {
 
     LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
-    // find the previous item
-    LinkedListItem *previousItem = findNeighbordInFront(firstItem, nameOfItemToRemove);
-    linkItems(previousItem, item->next);
-    printBillboard("Deleting an item from the list", 'x', 40, true);
-    std::cout << item->name << " was deleted from the list" << std::endl;
-    std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
-    printf("\n");
-    delete(item);
-    printf("(updating list)\n\n");
-    printEntireList(firstItem);
+    if (item != nullptr)
+    {
+        // find the previous item
+        LinkedListItem *previousItem = findNeighbordInFront(firstItem, nameOfItemToRemove);
+        linkItems(previousItem, item->next);
+        printBillboard("Deleting an item from the list", 'x', 40, true);
+        std::cout << item->name << " was deleted from the list" << std::endl;
+        std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
+        printf("\n");
+        delete(item);
+        printf("(updating list)\n\n");
+        printEntireList(firstItem);
+    } else {
+        std::cout << "Your list hasn't changed" << std::endl;
+    }
 }
 
 LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItemToFind) {
     LinkedListItem *currentItem = firstItem;
-
-    while(currentItem->name != nameOfItemToFind)
+    // verify the name exists, first. if so, return a pointer to the item
+    if(verifyNameExistsInList(firstItem, nameOfItemToFind))
     {
-        currentItem = currentItem->next;
-    }
+        while(currentItem->name != nameOfItemToFind)
+        {
+            currentItem = currentItem->next;
+        }
 
-    return currentItem;
+        return currentItem;
+    } else {
+        return nullptr; // that name doesn't exist, so return a nullptr
+    }
 }
 
 LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFrontOfThisName) {
@@ -233,6 +247,27 @@ void printListNamesOnly(LinkedListItem *firstItem) {
     {
         std::cout << currentItem->name << std::endl;
         currentItem = currentItem->next;
+    }
+}
+
+bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind) {
+    LinkedListItem *currentItem = firstItem;
+    while (currentItem->name != nameToFind)
+    {
+        if (currentItem->next == nullptr){
+            if (currentItem->name != nameToFind)
+            {
+                std::cout << nameToFind << " wasn't found in the list" << std::endl;
+                return false;
+            }
+            break;
+        }
+        currentItem = currentItem->next;
+    }
+    if (currentItem->name == nameToFind)
+    {
+        std::cout << nameToFind << " was found in the list" << std::endl;
+        return true;
     }
 }
 
