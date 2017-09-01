@@ -42,6 +42,11 @@ int main()
     // remove the first item in the list, and return the new first item
     LinkedListItem *newFirstItem = removeHead(item1);
 
+    // add new item to the front of the list
+
+    LinkedListItem *newNewFirstItem = makeListItem("Marky Mark");
+    addToHead(newFirstItem, newNewFirstItem);
+
 	std::cin >> userInput; 
 	return 0;
 }

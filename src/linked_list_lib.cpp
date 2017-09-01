@@ -168,3 +168,15 @@ LinkedListItem *removeHead(LinkedListItem *firstItem) {
     return secondItem;
 }
 
+void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {
+    printf("\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printf("Adding new item to the head of the list.\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+
+    linkItems(newFirstItem, firstItem);
+    std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
+    printf("updating list\n");
+    printEntireList(newFirstItem);
+}
+

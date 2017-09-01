@@ -43,6 +43,8 @@ LinkedListItem* removeHead(LinkedListItem *firstItem);
 
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 
+void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem);
+
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose);
 
 #endif // !linked_list
