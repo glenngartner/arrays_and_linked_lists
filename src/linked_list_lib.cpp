@@ -152,3 +152,19 @@ void removeTail(LinkedListItem *firstItem) {
     LinkedListItem *newLastItem = lastListItem(firstItem);
     std::cout << newLastItem->name << " is now the last in the list" << std::endl;
 }
+
+LinkedListItem *removeHead(LinkedListItem *firstItem) {
+    printf("\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printf("Deleting the first item in the list.\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    LinkedListItem *secondItem = firstItem->next;
+    delete firstItem;
+    std::cout << firstItem->name << " was deleted from the beginning of the list" << std::endl;
+    std::cout << secondItem->name << " is now the first item in the list" << std::endl;
+    printf("\n");
+    printf("(Updating List)\n");
+    printEntireList(secondItem);
+    return secondItem;
+}
+

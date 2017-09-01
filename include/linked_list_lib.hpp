@@ -39,6 +39,8 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem);
 
 void removeTail(LinkedListItem *firstItem);
 
+LinkedListItem* removeHead(LinkedListItem *firstItem);
+
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose);

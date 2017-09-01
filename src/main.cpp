@@ -39,6 +39,9 @@ int main()
     // remove the last item in the list
     removeTail(item1);
 
+    // remove the first item in the list, and return the new first item
+    LinkedListItem *newFirstItem = removeHead(item1);
+
 	std::cin >> userInput; 
 	return 0;
 }
