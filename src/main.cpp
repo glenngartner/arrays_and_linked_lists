@@ -31,8 +31,19 @@ int main()
 	printAllItemInfo(&item5);
 	printAllItemInfo(&item6);
 
+    // print the length of the list
     std::cout << "list length: "<< listLength(&item1) << std::endl;
     printDashedLine();
+
+    // get the last item in the list, only providing the first
+    LinkedListItem* lastItem = lastListItem(&item1);
+    printDashedLine();
+    printf("Print last item, only providing the first in the list\n");
+    printAllItemInfo(lastItem);
+    printDashedLine();
+
+    //
+
 
 //    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
 //    LinkedListItem item1 = makeListItem("Carl");

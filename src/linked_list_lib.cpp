@@ -93,3 +93,12 @@ int listLength(LinkedListItem *firstItem) {
     }
     return length;
 }
+
+LinkedListItem *lastListItem(LinkedListItem *firstItem) {
+    LinkedListItem * itemInScope = firstItem;
+    while (itemInScope->next != nullptr)
+    {
+        itemInScope = itemInScope->next;
+    }
+    return itemInScope;
+}
