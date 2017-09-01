@@ -15,7 +15,7 @@ struct LinkedListItem
 
 void printSize(LinkedListItem value);
 
-void printValue(LinkedListItem& item);
+void printValue(LinkedListItem *item);
 
 void printAllItemInfo(LinkedListItem *item);
 
@@ -31,6 +31,9 @@ void printArrayIndicesMemoryAddresses(std::array<int, 4> &myArray, std::string n
 
 void printDashedLine();
 
-LinkedListItem createLinkedList(std::array<std::string, 6> &names, bool verbose);
+int listLength(LinkedListItem *firstItem);
+
+void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,
+                      std::array<LinkedListItem *, 6> &tempListItemArray, bool verbose);
 
 #endif // !linked_list

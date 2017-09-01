@@ -16,7 +16,7 @@ void printAllItemInfo(LinkedListItem *item)
 {
 	printLinkedMemoryAddress(item);
 	printSize(*item);
-	printValue(*item);
+	printValue(item);
     printDashedLine();
 }
 
@@ -30,14 +30,14 @@ void printSize(LinkedListItem item)
 	std::cout << item.name << "'s size is: " << sizeof(item) << std::endl;
 }
 
-void printValue(LinkedListItem& item)
+void printValue(LinkedListItem *item)
 {
-	std::cout << item.name << "'s value is: " << item.value << std::endl;
-	if (item.next == nullptr) {
-		std::cout << item.name << " doesn't have a neighbor (it's null)" << std::endl;
+	std::cout << item->name << "'s value is: " << item->value << std::endl;
+	if (item->next == nullptr) {
+		std::cout << item->name << " doesn't have a neighbor (it's null)" << std::endl;
 	}
 	else {
-		std::cout << item.name << "'s next neighbor is: " << item.next->name << std::endl;
+		std::cout << item->name << "'s next neighbor is: " << item->next->name << std::endl;
 	}
 }
 
@@ -64,22 +64,32 @@ void printDashedLine() {
     std::cout << "--------------------------------" << std::endl;
 }
 
-LinkedListItem createLinkedList(std::array<std::string, 6> &names, bool verbose) {
-    std::array<LinkedListItem, 6> tempListItemArray;
-    LinkedListItem firstItem = makeListItem(names[0]);
+void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,
+                      std::array<LinkedListItem *, 6>& tempListItemArray, bool verbose) {
+//    std::array<LinkedListItem*, 6> tempListItemArray;
     tempListItemArray[0] = firstItem;
-    for (int i = 1; i < names.size(); i++)
+    for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {
+        LinkedListItem newItem= makeListItem(names[i]); // make a new list item
+        tempListItemArray[i] = &newItem; // store the address of the new item in the temporary array
+        linkItems(*tempListItemArray[i-1], *tempListItemArray[i]); // link this list item to the previous item
+
         if (verbose)
         {
             std::cout << names[i-1] << " was created and linked to " << names[i] << std::endl;
         }
 
-        tempListItemArray[i] = makeListItem(names[i]); // create a new list item, and store it in the array
-        linkItems(tempListItemArray[i-1], tempListItemArray[i]); // link this list item to the previous item
-
     }
     printDashedLine();
+}
 
-    return firstItem;
+int listLength(LinkedListItem *firstItem) {
+    unsigned int length = 1; // starts at 1, since we always have 1 item (the function argument)
+    LinkedListItem * itemInScope = firstItem;
+    while(itemInScope->next != nullptr)
+    {
+        length ++;
+        itemInScope = itemInScope->next;
+    }
+    return length;
 }
