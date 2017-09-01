@@ -3,12 +3,12 @@
 #include <array>
 #include "linked_list_lib.hpp"
 
-LinkedListItem makeListItem(std::string name)
+LinkedListItem * makeListItem(std::string name)
 {
-	LinkedListItem item;
-	item.name = name;
-	item.value = rand() % 100;
-	item.next = nullptr;
+	LinkedListItem* item = new LinkedListItem;
+	item->name = name;
+	item->value = rand() % 100;
+	item->next = nullptr;
 	return item;
 }
 
@@ -20,9 +20,9 @@ void printAllItemInfo(LinkedListItem *item)
     printDashedLine();
 }
 
-void linkItems(LinkedListItem& first, LinkedListItem& second)
+void linkItems(LinkedListItem* first, LinkedListItem* second)
 {
-	first.next = &second;
+	first->next = second;
 }
 
 void printSize(LinkedListItem item)
@@ -70,9 +70,9 @@ void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &nam
     tempListItemArray[0] = firstItem;
     for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {
-        LinkedListItem newItem= makeListItem(names[i]); // make a new list item
-        tempListItemArray[i] = &newItem; // store the address of the new item in the temporary array
-        linkItems(*tempListItemArray[i-1], *tempListItemArray[i]); // link this list item to the previous item
+        LinkedListItem *newItem= makeListItem(names[i]); // make a new list item
+        tempListItemArray[i] = newItem; // store the address of the new item in the temporary array
+        linkItems(tempListItemArray[i-1], tempListItemArray[i]); // link this list item to the previous item
 
         if (verbose)
         {
@@ -96,7 +96,7 @@ int listLength(LinkedListItem *firstItem) {
 
 LinkedListItem *lastListItem(LinkedListItem *firstItem) {
     LinkedListItem * itemInScope = firstItem;
-    while (itemInScope->next != nullptr)
+    while (itemInScope->next != nullptr || itemInScope->next != NULL)
     {
         itemInScope = itemInScope->next;
     }
@@ -124,7 +124,7 @@ void printEntireList(LinkedListItem *firstItem) {
 
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
     LinkedListItem *lastItem = lastListItem(firstItem);
-    linkItems(*lastItem, *newItem);
+    linkItems(lastItem, newItem);
     LinkedListItem *newLastItem = lastListItem(firstItem);
     printf("\n");
     printf("***************************************\n");
@@ -134,4 +134,27 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
     printAllItemInfo(newItem);
     std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name << std::endl;
     std::cout << newLastItem->name << " is now last in the list" << std::endl;
+}
+
+void removeTail(LinkedListItem *firstItem) {
+
+    printf("\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    printf("Deleting the last item in the list.\n");
+    printf("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+
+    LinkedListItem *currentItem = firstItem;
+    while (currentItem->next->next != nullptr)
+    {
+        currentItem = currentItem->next;
+    }
+    std::string nameToDelete = currentItem->next->name;
+    delete currentItem->next;
+    currentItem->next = nullptr;
+    std::cout << nameToDelete << " has been deleted" << std::endl;
+
+//    lastItem = NULL;
+//    delete lastItem;
+    LinkedListItem *newLastItem = lastListItem(firstItem);
+    std::cout << newLastItem->name << " is now the last in the list" << std::endl;
 }

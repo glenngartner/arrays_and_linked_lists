@@ -21,9 +21,9 @@ void printAllItemInfo(LinkedListItem *item);
 
 void printLinkedMemoryAddress(LinkedListItem *item);
 
-LinkedListItem makeListItem(std::string name);
+LinkedListItem * makeListItem(std::string name);
 
-void linkItems(LinkedListItem& first, LinkedListItem& second);
+void linkItems(LinkedListItem* first, LinkedListItem* second);
 
 void printArrayIndexMemoryAddress(int value, std::string name, unsigned int index);
 
@@ -36,6 +36,8 @@ int listLength(LinkedListItem *firstItem);
 void printEntireList(LinkedListItem *firstItem);
 
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem);
+
+void removeTail(LinkedListItem *firstItem);
 
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 

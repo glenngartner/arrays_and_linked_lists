@@ -13,12 +13,12 @@ int main()
 //    printArrayIndicesMemoryAddresses(array1, "array1");
 //    printArrayIndicesMemoryAddresses(array2, "array2");
 
-    LinkedListItem item1 = makeListItem("matt");
-	LinkedListItem item2 = makeListItem("carl");
-	LinkedListItem item3 = makeListItem("steve");
-	LinkedListItem item4 = makeListItem("frank");
-	LinkedListItem item5 = makeListItem("mike");
-	LinkedListItem item6 = makeListItem("blitzen");
+    LinkedListItem *item1 = makeListItem("matt");
+	LinkedListItem *item2 = makeListItem("carl");
+	LinkedListItem *item3 = makeListItem("steve");
+	LinkedListItem *item4 = makeListItem("frank");
+	LinkedListItem *item5 = makeListItem("mike");
+	LinkedListItem *item6 = makeListItem("blitzen");
 	linkItems(item1, item2);
 	linkItems(item2, item3);
 	linkItems(item3, item4);
@@ -32,22 +32,25 @@ int main()
 //	printAllItemInfo(&item6);
 
     // print the length of the list
-    std::cout << "list length: "<< listLength(&item1) << std::endl;
+    std::cout << "list length: "<< listLength(item1) << std::endl;
     printDashedLine();
 
     // get the last item in the list, only providing the first
-    LinkedListItem* lastItem = lastListItem(&item1);
+    LinkedListItem* lastItem = lastListItem(item1);
     printDashedLine();
     printf("Print last item, only providing the first in the list\n");
     printAllItemInfo(lastItem);
     printDashedLine();
 
     // print the entire list
-    printEntireList(&item1);
+    printEntireList(item1);
 
     // add a new item to the tail
-    LinkedListItem newItem = makeListItem("last man standing");
-    addToTail(&item1, &newItem);
+    LinkedListItem *newItem = makeListItem("last man standing");
+    addToTail(item1, newItem);
+
+    // remove the last item in the list
+    removeTail(item1);
 
 
 //    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
