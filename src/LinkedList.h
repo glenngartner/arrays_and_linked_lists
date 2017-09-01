@@ -31,7 +31,7 @@ public:
 
     void addItemToHeadByName(std::string newItemName);
 
-    void printItemDetailsByName(std::string name);
+    void printItemDetailsByName(std::string itemName);
 };
 
 

@@ -53,9 +53,14 @@ void LinkedList::whoIsMyHead() {
     printBillboard(name, '=', 20, true);
 }
 
-void LinkedList::printItemDetailsByName(std::string name) {
-    LinkedListItem* item = findItemByName(LinkedList::firstItem, name);
-    std::string printString= "Details on " + item->name;
-    printBillboard(printString, 'o', 25, true);
-    printAllItemInfo(item);
+void LinkedList::printItemDetailsByName(std::string itemName) {
+    LinkedListItem* item = findItemByName(LinkedList::firstItem, itemName);
+    if(item == nullptr){ // if this guy doesn't exist, say so, and do nothing
+        std::cout << itemName << " no longer exist and I have nothing to show for it"
+    << std::endl;
+    } else { // if he does exist, print his deets
+        std::string printString = "Details on " + item->name;
+        printBillboard(printString, '.', 20, true);
+        printAllItemInfo(item);
+    }
 }

@@ -3,6 +3,10 @@
 #include "LinkedList.h"
 #include <array>
 
+void printOptions(){
+    printf("What would you like to do?\n");
+}
+
 int main()
 {	
 	int userInput;
@@ -16,7 +20,11 @@ int main()
 
     std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
 
+    printf("\nMaking your list....\n\n");
     LinkedList *newList = new LinkedList(names, true);
+    printOptions();
+    std::cin >> userInput;
+
     newList->printList(false);
     newList->addItemToTailByName("Duke");
     newList->addItemToTailByName("Mike");
@@ -25,7 +33,7 @@ int main()
     newList->addItemToHeadByName("Becky");
     newList->removeListItemByName("Dirk");
     newList->whoIsMyHead();
-//    newList->printItemDetailsByName("Mike");
+    newList->printItemDetailsByName("Duke");
 
 
 	std::cin >> userInput; 
