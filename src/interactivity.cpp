@@ -19,8 +19,9 @@ void printOptions() {
     printf("(v) print a list with all details\n");
     printf("(H) add an item to the head\n");
     printf("(T) add an item to the tail\n");
-    printf("(h) remove an item to the head\n");
-    printf("(t) remove an item to the tail\n");
+    printf("(h) remove an item from the head\n");
+    printf("(t) remove an item from the tail\n");
+    printf("(n) remove an item by name\n");
     printf("(x) exit the app\n");
     printBorder('.', 35);
     printf("\n");

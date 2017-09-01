@@ -211,8 +211,7 @@ void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove)
         std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
         printf("\n");
         delete (item);
-        printf("(updating list)\n\n");
-        printEntireList(firstItem);
+//        printEntireList(firstItem);
     } else {
         std::cout << "Your list hasn't changed" << std::endl;
     }
