@@ -25,10 +25,12 @@ LinkedListItem makeListItem(std::string name);
 
 void linkItems(LinkedListItem& first, LinkedListItem& second);
 
-void printArrayIndexMemoryAddress(int index);
+void printArrayIndexMemoryAddress(int value, std::string name, unsigned int index);
 
-void printArrayIndicesMemoryAddresses(std::array<int, 4>& myArray);
+void printArrayIndicesMemoryAddresses(std::array<int, 4> &myArray, std::string name);
 
 void printDashedLine();
+
+LinkedListItem createLinkedList(std::array<std::string, 6> &names, bool verbose);
 
 #endif // !linked_list
