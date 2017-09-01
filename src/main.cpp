@@ -18,7 +18,7 @@ int main()
     std::array<LinkedListItem*, 6> tempListItemArray;
 	createLinkedList(item1, names, true);
 
-	    // print the length of the list
+	// print the length of the list
     std::cout << "list length: "<< listLength(item1) << std::endl;
     printDashedLine();
 
