@@ -191,3 +191,38 @@ void printBorder(char borderCharacter, unsigned int borderLength)
     }
 }
 
+void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove) {
+
+    LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
+    // find the previous item
+    LinkedListItem *previousItem = findNeighbordInFront(firstItem, nameOfItemToRemove);
+    linkItems(previousItem, item->next);
+    printBillboard("Deleting an item from the list", 'x', 40, true);
+    std::cout << item->name << " was deleted from the list" << std::endl;
+    std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
+    printf("\n");
+    delete(item);
+    printf("(updating list)\n\n");
+    printEntireList(firstItem);
+}
+
+LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItemToFind) {
+    LinkedListItem *currentItem = firstItem;
+
+    while(currentItem->name != nameOfItemToFind)
+    {
+        currentItem = currentItem->next;
+    }
+
+    return currentItem;
+}
+
+LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFrontOfThisName) {
+    LinkedListItem *currentItem = firstItem;
+    while(currentItem->next->name != inFrontOfThisName)
+    {
+        currentItem = currentItem->next;
+    }
+    return currentItem;
+}
+

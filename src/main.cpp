@@ -47,8 +47,8 @@ int main()
     LinkedListItem *newNewFirstItem = makeListItem("Marky Mark");
     addToHead(newFirstItem, newNewFirstItem);
 
-    printBillboard("Sample Billboard", 'X', 30, true);
-    printBillboard("Second Sample Billboard", 'O', 30, true);
+    // remove a list item by name
+    removeItemByName(newNewFirstItem, "Steve");
 
 	std::cin >> userInput; 
 	return 0;
