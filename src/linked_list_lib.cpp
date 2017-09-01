@@ -121,3 +121,17 @@ void printEntireList(LinkedListItem *firstItem) {
         }
     }
 }
+
+void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
+    LinkedListItem *lastItem = lastListItem(firstItem);
+    linkItems(*lastItem, *newItem);
+    LinkedListItem *newLastItem = lastListItem(firstItem);
+    printf("\n");
+    printf("***************************************\n");
+    printf("New item added to the end of the list:\n");
+    printf("***************************************\n");
+    printf("\n");
+    printAllItemInfo(newItem);
+    std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name << std::endl;
+    std::cout << newLastItem->name << " is now last in the list" << std::endl;
+}

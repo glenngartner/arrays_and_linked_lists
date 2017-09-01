@@ -45,6 +45,10 @@ int main()
     // print the entire list
     printEntireList(&item1);
 
+    // add a new item to the tail
+    LinkedListItem newItem = makeListItem("last man standing");
+    addToTail(&item1, &newItem);
+
 
 //    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
 //    LinkedListItem item1 = makeListItem("Carl");

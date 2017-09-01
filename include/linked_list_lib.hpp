@@ -35,6 +35,8 @@ int listLength(LinkedListItem *firstItem);
 
 void printEntireList(LinkedListItem *firstItem);
 
+void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem);
+
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,
