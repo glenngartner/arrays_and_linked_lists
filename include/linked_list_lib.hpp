@@ -33,6 +33,8 @@ void printDashedLine();
 
 int listLength(LinkedListItem *firstItem);
 
+void printEntireList(LinkedListItem *firstItem);
+
 LinkedListItem* lastListItem(LinkedListItem *firstItem);
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names,

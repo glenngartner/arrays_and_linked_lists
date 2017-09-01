@@ -102,3 +102,22 @@ LinkedListItem *lastListItem(LinkedListItem *firstItem) {
     }
     return itemInScope;
 }
+
+void printEntireList(LinkedListItem *firstItem) {
+    printf("List Details:\n");
+//    int length = listLength(firstItem);
+//    printDashedLine();
+//    printf("Length: \n", length);
+    LinkedListItem *itemInScope = firstItem;
+    while (true)
+    {
+        printAllItemInfo(itemInScope);
+
+        if (itemInScope->next == nullptr)
+        {
+            return;
+        } else {
+            itemInScope = itemInScope->next;
+        }
+    }
+}

@@ -10,8 +10,8 @@ int main()
 	std::array<int, 4> array2 = { 5, 6, 7, 8 };
     array2.size();
 
-    printArrayIndicesMemoryAddresses(array1, "array1");
-    printArrayIndicesMemoryAddresses(array2, "array2");
+//    printArrayIndicesMemoryAddresses(array1, "array1");
+//    printArrayIndicesMemoryAddresses(array2, "array2");
 
     LinkedListItem item1 = makeListItem("matt");
 	LinkedListItem item2 = makeListItem("carl");
@@ -24,12 +24,12 @@ int main()
 	linkItems(item3, item4);
 	linkItems(item4, item5);
 	linkItems(item5, item6);
-	printAllItemInfo(&item1);
-	printAllItemInfo(&item2);
-	printAllItemInfo(&item3);
-	printAllItemInfo(&item4);
-	printAllItemInfo(&item5);
-	printAllItemInfo(&item6);
+//	printAllItemInfo(&item1);
+//	printAllItemInfo(&item2);
+//	printAllItemInfo(&item3);
+//	printAllItemInfo(&item4);
+//	printAllItemInfo(&item5);
+//	printAllItemInfo(&item6);
 
     // print the length of the list
     std::cout << "list length: "<< listLength(&item1) << std::endl;
@@ -42,7 +42,8 @@ int main()
     printAllItemInfo(lastItem);
     printDashedLine();
 
-    //
+    // print the entire list
+    printEntireList(&item1);
 
 
 //    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Abel", "Hank"};
