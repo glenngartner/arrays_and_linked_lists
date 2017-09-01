@@ -3,60 +3,63 @@
 #include <array>
 #include "linked_list_lib.hpp"
 
-LinkedListItem * makeListItem(std::string name)
-{
-	LinkedListItem* item = new LinkedListItem;
-	item->name = name;
-	item->value = rand() % 100;
-	item->next = nullptr;
-	return item;
+LinkedListItem *makeListItem(std::string name) {
+    LinkedListItem *item = new LinkedListItem;
+    item->name = name;
+    item->value = rand() % 100;
+    item->next = nullptr;
+    return item;
 }
 
-void printAllItemInfo(LinkedListItem *item)
-{
-	printLinkedMemoryAddress(item);
-	printSize(*item);
-	printValue(item);
-    printDashedLine();
+void printAllItemInfo(LinkedListItem *item) {
+    std::cout << item->name
+              << " >> address: " << &item
+              << " | size: " << sizeof(item)
+              << " | value: " << item->value
+              << " | neighbor: " << neighbor(item)
+              << std::endl;
+
+
+//	printLinkedMemoryAddress(item);
+//	printSize(*item);
+//	printValue(item);
+//    neighbor(item);
+//    printf("             o-o   \n");
 }
 
-void linkItems(LinkedListItem* first, LinkedListItem* second)
-{
-	first->next = second;
+void linkItems(LinkedListItem *first, LinkedListItem *second) {
+    first->next = second;
 }
 
-void printSize(LinkedListItem item)
-{
-	std::cout << item.name << "'s size is: " << sizeof(item) << std::endl;
+void printSize(LinkedListItem item) {
+    std::cout << item.name << "'s size is: " << sizeof(item) << std::endl;
 }
 
-void printValue(LinkedListItem *item)
-{
-	std::cout << item->name << "'s value is: " << item->value << std::endl;
-	if (item->next == nullptr) {
-		std::cout << item->name << " doesn't have a neighbor (it's null)" << std::endl;
-	}
-	else {
-		std::cout << item->name << "'s next neighbor is: " << item->next->name << std::endl;
-	}
+
+std::string neighbor(LinkedListItem *item) {
+    if (item->next == nullptr) {
+        return " <none> (it's null)";
+    } else {
+        return item->next->name;
+    }
 }
 
-void printLinkedMemoryAddress(LinkedListItem *item)
-{
-	std::cout << item->name << "'s Address is: " << item << std::endl;
+void printValue(LinkedListItem *item) {
+    std::cout << item->name << "'s value is: " << item->value << std::endl;
 }
 
-void printArrayIndexMemoryAddress(int value, std::string name, unsigned int index)
-{
-	std::cout << name << "[" << index << "] address: " << &value << std::endl;
+void printLinkedMemoryAddress(LinkedListItem *item) {
+    std::cout << item->name << "'s Address is: " << item << std::endl;
 }
 
-void printArrayIndicesMemoryAddresses(std::array<int, 4> &myArray, std::string name)
-{
-	for (int i = 0; i < myArray.size(); i++)
-	{
+void printArrayIndexMemoryAddress(int value, std::string name, unsigned int index) {
+    std::cout << name << "[" << index << "] address: " << &value << std::endl;
+}
+
+void printArrayIndicesMemoryAddresses(std::array<int, 4> &myArray, std::string name) {
+    for (int i = 0; i < myArray.size(); i++) {
         printArrayIndexMemoryAddress(myArray[i], name, i);
-	}
+    }
     printDashedLine();
 }
 
@@ -65,17 +68,16 @@ void printDashedLine() {
 }
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose) {
-    std::array<LinkedListItem*, 6> tempListItemArray;
+    std::array<LinkedListItem *, 6> tempListItemArray;
     tempListItemArray[0] = firstItem;
     for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {
-        LinkedListItem *newItem= makeListItem(names[i]); // make a new list item
+        LinkedListItem *newItem = makeListItem(names[i]); // make a new list item
         tempListItemArray[i] = newItem; // store the address of the new item in the temporary array
-        linkItems(tempListItemArray[i-1], tempListItemArray[i]); // link this list item to the previous item
+        linkItems(tempListItemArray[i - 1], tempListItemArray[i]); // link this list item to the previous item
 
-        if (verbose)
-        {
-            std::cout << names[i-1] << " was created and linked to " << names[i] << std::endl;
+        if (verbose) {
+            std::cout << names[i - 1] << " was created and linked to " << names[i] << std::endl;
         }
 
     }
@@ -84,32 +86,30 @@ void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &nam
 
 int listLength(LinkedListItem *firstItem) {
     unsigned int length = 1; // starts at 1, since we always have 1 item (the function argument)
-    LinkedListItem * itemInScope = firstItem;
-    while(itemInScope->next != nullptr)
-    {
-        length ++;
+    LinkedListItem *itemInScope = firstItem;
+    while (itemInScope->next != nullptr) {
+        length++;
         itemInScope = itemInScope->next;
     }
     return length;
 }
 
 LinkedListItem *lastListItem(LinkedListItem *firstItem) {
-    LinkedListItem * itemInScope = firstItem;
-    while (itemInScope->next != nullptr)
-    {
+    LinkedListItem *itemInScope = firstItem;
+    while (itemInScope->next != nullptr) {
         itemInScope = itemInScope->next;
     }
     return itemInScope;
 }
 
 void printEntireList(LinkedListItem *firstItem) {
-    printf("List Details:\n");
+//    printf("List Details:\n");
 //    int length = listLength(firstItem);
 //    printDashedLine();
 //    printf("Length: \n", length);
+    printBillboard("Full List With Details", '#', 25, true);
     LinkedListItem *itemInScope = firstItem;
-    while (itemInScope->next != nullptr)
-    {
+    while (itemInScope->next != nullptr) {
         printAllItemInfo(itemInScope);
         itemInScope = itemInScope->next;
     }
@@ -117,27 +117,30 @@ void printEntireList(LinkedListItem *firstItem) {
 }
 
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
-    LinkedListItem *lastItem = lastListItem(firstItem);
-    linkItems(lastItem, newItem);
-    LinkedListItem *newLastItem = lastListItem(firstItem);
-    printBillboard("New item added to the end of the list", '+', 50, true);
-    printAllItemInfo(newItem);
-    std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name << std::endl;
-    std::cout << newLastItem->name << " is now last in the list" << std::endl;
+    if (verifyNameExistsInList(firstItem, newItem->name)) {
+        printf("\n\nSorry, that name already exists. Try another one\n\n");
+    } else {
+        LinkedListItem *lastItem = lastListItem(firstItem);
+        linkItems(lastItem, newItem);
+        LinkedListItem *newLastItem = lastListItem(firstItem);
+        printBillboard("New item added to the end of the list", '+', 50, true);
+        printAllItemInfo(newItem);
+        std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name
+                  << std::endl;
+        std::cout << newLastItem->name << " is now last in the list" << std::endl;
+    }
 }
 
 void removeTail(LinkedListItem *firstItem) {
 
-    printBillboard("Deleting the last item in the list", 'x', 40, true);
+    printBillboard("Deleted the last item in the list", 'x', 40, true);
 
-    if (firstItem->next == nullptr)
-    {
+    if (firstItem->next == nullptr) {
         printf("There's only one item in the list, so I'm deleting nothing\n");
         printf("Your list is unchanged\n");
     } else {
         LinkedListItem *currentItem = firstItem;
-        while (currentItem->next->next != nullptr)
-        {
+        while (currentItem->next->next != nullptr) {
             currentItem = currentItem->next;
         }
         std::string nameToDelete = currentItem->next->name;
@@ -153,27 +156,31 @@ void removeTail(LinkedListItem *firstItem) {
 LinkedListItem *removeHead(LinkedListItem *firstItem) {
     printBillboard("Deleting the first item in the list", 'x', 40, true);
     LinkedListItem *secondItem = firstItem->next;
-    delete firstItem;
     std::cout << firstItem->name << " was deleted from the beginning of the list" << std::endl;
+    delete firstItem;
     std::cout << secondItem->name << " is now the first item in the list" << std::endl;
     printf("\n");
-    printf("(Updating List)\n");
-    printEntireList(secondItem);
+//    printf("(Updating List)\n");
+//    printEntireList(secondItem);
     return secondItem;
 }
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {
-    printBillboard("Adding new item to the head of the list.", '+', 50, true);
-
-    linkItems(newFirstItem, firstItem);
-    std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
-    printf("updating list\n");
-    printEntireList(newFirstItem);
+    if (verifyNameExistsInList(firstItem, newFirstItem->name)) {
+        printf("\n\nSorry, that name already exists. Try another one\n\n");
+    } else {
+        printBillboard("Added new item to the head of the list.", '+', 50, true);
+        linkItems(newFirstItem, firstItem);
+        std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
+//    printf("updating list\n");
+//    printEntireList(newFirstItem);
+        printAllItemInfo(newFirstItem);
+        printf("Print the list to see the new changes\n");
+    }
 }
 
 void printBillboard(std::string text, char borderCharacter, unsigned int borderLength, bool blankLineSandwich) {
-    if(blankLineSandwich)
-    {
+    if (blankLineSandwich) {
         printf("\n");
     }
     printBorder(borderCharacter, borderLength);
@@ -181,16 +188,13 @@ void printBillboard(std::string text, char borderCharacter, unsigned int borderL
     std::cout << text;
     printf("\n");
     printBorder(borderCharacter, borderLength);
-    if(blankLineSandwich)
-    {
+    if (blankLineSandwich) {
         printf("\n\n");
     }
 }
 
-void printBorder(char borderCharacter, unsigned int borderLength)
-{
-    for (int i = 1; i <= borderLength; i++)
-    {
+void printBorder(char borderCharacter, unsigned int borderLength) {
+    for (int i = 1; i <= borderLength; i++) {
         std::cout << borderCharacter;
     }
 }
@@ -198,16 +202,15 @@ void printBorder(char borderCharacter, unsigned int borderLength)
 void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove) {
 
     LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
-    if (item != nullptr)
-    {
+    if (item != nullptr) {
         // find the previous item
         LinkedListItem *previousItem = findNeighbordInFront(firstItem, nameOfItemToRemove);
         linkItems(previousItem, item->next);
-        printBillboard("Deleting an item from the list", 'x', 40, true);
+        printBillboard("Deleted an item from the list", 'x', 40, true);
         std::cout << item->name << " was deleted from the list" << std::endl;
         std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
         printf("\n");
-        delete(item);
+        delete (item);
         printf("(updating list)\n\n");
         printEntireList(firstItem);
     } else {
@@ -218,10 +221,8 @@ void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove)
 LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItemToFind) {
     LinkedListItem *currentItem = firstItem;
     // verify the name exists, first. if so, return a pointer to the item
-    if(verifyNameExistsInList(firstItem, nameOfItemToFind))
-    {
-        while(currentItem->name != nameOfItemToFind)
-        {
+    if (verifyNameExistsInList(firstItem, nameOfItemToFind)) {
+        while (currentItem->name != nameOfItemToFind) {
             currentItem = currentItem->next;
         }
 
@@ -233,40 +234,36 @@ LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItem
 
 LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFrontOfThisName) {
     LinkedListItem *currentItem = firstItem;
-    while(currentItem->next->name != inFrontOfThisName)
-    {
+    while (currentItem->next->name != inFrontOfThisName) {
         currentItem = currentItem->next;
     }
     return currentItem;
 }
 
 void printListNamesOnly(LinkedListItem *firstItem) {
-    LinkedListItem* currentItem = firstItem;
+    LinkedListItem *currentItem = firstItem;
     printBillboard("Full list by names", '=', 20, true);
-    while (currentItem->next != nullptr)
-    {
+    while (currentItem->next != nullptr) {
         std::cout << currentItem->name << std::endl;
         currentItem = currentItem->next;
     }
+        std::cout << currentItem->name << std::endl;
 }
 
 bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind) {
     LinkedListItem *currentItem = firstItem;
-    while (currentItem->name != nameToFind)
-    {
-        if (currentItem->next == nullptr){
-            if (currentItem->name != nameToFind)
-            {
-                std::cout << nameToFind << " wasn't found in the list" << std::endl;
+    while (currentItem->name != nameToFind) {
+        if (currentItem->next == nullptr) {
+            if (currentItem->name != nameToFind) {
+//                std::cout << nameToFind << " wasn't found in the list" << std::endl;
                 return false;
             }
             break;
         }
         currentItem = currentItem->next;
     }
-    if (currentItem->name == nameToFind)
-    {
-        std::cout << nameToFind << " was found in the list" << std::endl;
+    if (currentItem->name == nameToFind) {
+//        std::cout << nameToFind << " was found in the list" << std::endl;
         return true;
     }
 }

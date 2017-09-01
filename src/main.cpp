@@ -1,41 +1,64 @@
 #include <iostream>
 #include "linked_list_lib.hpp"
 #include "LinkedList.h"
+#include "interactivity.h"
 #include <array>
 
-void printOptions(){
-    printf("What would you like to do?\n");
-}
-
-int main()
-{	
-	int userInput;
-
-//	std::array<int, 4> array1 = { 1, 2, 3, 4 };
-//	std::array<int, 4> array2 = { 5, 6, 7, 8 };
-//    array2.size();
-
-//    printArrayIndicesMemoryAddresses(array1, "array1");
-//    printArrayIndicesMemoryAddresses(array2, "array2");
+int main() {
+    char userInput;
+    bool exit;
+    std::string stringInput;
 
     std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
-
+    welcomeTitle();
     printf("\nMaking your list....\n\n");
     LinkedList *newList = new LinkedList(names, true);
-    printOptions();
-    std::cin >> userInput;
 
-    newList->printList(false);
-    newList->addItemToTailByName("Duke");
-    newList->addItemToTailByName("Mike");
-    newList->removeItemFromTail();
-    newList->removeItemFromHead();
-    newList->addItemToHeadByName("Becky");
-    newList->removeListItemByName("Dirk");
-    newList->whoIsMyHead();
-    newList->printItemDetailsByName("Duke");
+    while (!exit) {
+        printOptions();
+        std::cin >> userInput;
+        switch (userInput) {
+            case 'p':
+                newList->printList(false);
+                break;
+            case 'v':
+                newList->printList(true);
+                break;
+            case 'H':
+                nameNewItem();
+                std::cin >> stringInput;
+                newList->addItemToHeadByName(stringInput);
+                break;
+            case 'T':
+                nameNewItem();
+                std::cin >> stringInput;
+                newList->addItemToTailByName(stringInput);
+                break;
+            case 'h':
+                newList->removeItemFromHead();
+                break;
+            case 't':
+                newList->removeItemFromTail();
+                break;
+            case 'x':
+                exit = true;
+                break;
+            default:
+                printf("\nsorry, that's not an option. try again\n");
+                break;
+        }
 
+    }
 
-	std::cin >> userInput; 
-	return 0;
+//    newList->printList(false);
+//    newList->addItemToTailByName("Duke");
+//    newList->addItemToTailByName("Mike");
+//    newList->removeItemFromTail();
+//    newList->removeItemFromHead();
+//    newList->addItemToHeadByName("Becky");
+//    newList->removeListItemByName("Dirk");
+//    newList->whoIsMyHead();
+//    newList->printItemDetailsByName("Duke");
+
+    return 0;
 }

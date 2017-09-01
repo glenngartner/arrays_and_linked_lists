@@ -17,6 +17,8 @@ void printSize(LinkedListItem value);
 
 void printValue(LinkedListItem *item);
 
+std::string neighbor(LinkedListItem *item);
+
 void printAllItemInfo(LinkedListItem *item);
 
 void printLinkedMemoryAddress(LinkedListItem *item);
