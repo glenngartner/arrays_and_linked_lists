@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <array>
 #include "linked_list_lib.hpp"
 
 LinkedListItem makeListItem(std::string name)
