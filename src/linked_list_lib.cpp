@@ -226,3 +226,13 @@ LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFr
     return currentItem;
 }
 
+void printListNamesOnly(LinkedListItem *firstItem) {
+    LinkedListItem* currentItem = firstItem;
+    printBillboard("Full list by names", '=', 20, true);
+    while (currentItem->next != nullptr)
+    {
+        std::cout << currentItem->name << std::endl;
+        currentItem = currentItem->next;
+    }
+}
+

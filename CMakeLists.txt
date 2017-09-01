@@ -8,4 +8,4 @@ file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 include_directories ("${PROJECT_SOURCE_DIR}/include")
 
-add_executable (linked_list ${SOURCES} include/linked_list_lib.hpp)
+add_executable (linked_list ${SOURCES} include/linked_list_lib.hpp src/LinkedList.cpp src/LinkedList.h)

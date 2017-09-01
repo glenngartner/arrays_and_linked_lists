@@ -35,6 +35,8 @@ int listLength(LinkedListItem *firstItem);
 
 void printEntireList(LinkedListItem *firstItem);
 
+void printListNamesOnly(LinkedListItem *firstItem);
+
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem);
 
 void removeTail(LinkedListItem *firstItem);
