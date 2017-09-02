@@ -55,7 +55,7 @@ void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove)
 
 LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItemToFind);
 
-LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFrontOfThisName);
+LinkedListItem *findNeighborInFront(LinkedListItem *firstItem, std::string inFrontOfThisName);
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem);
 

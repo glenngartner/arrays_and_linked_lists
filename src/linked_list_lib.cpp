@@ -185,19 +185,29 @@ void printBorder(char borderCharacter, unsigned int borderLength) {
 }
 
 void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove) {
-
-    LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
-    if (item != nullptr) {
-        // find the previous item
-        LinkedListItem *previousItem = findNeighbordInFront(firstItem, nameOfItemToRemove);
-        linkItems(previousItem, item->next);
-        printBillboard("Deleted an item from the list", 'x', 40, true);
-        std::cout << item->name << " was deleted from the list" << std::endl;
-        std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
+    // first, verify the name exists
+    if (verifyNameExistsInList(firstItem, nameOfItemToRemove)) {
+        // return the item pointer, by searching for its name
+        LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
+        if (firstItem->name !=nameOfItemToRemove) { // if you're deleting the list head, there's no previous item
+            // find the previous item, if one exists
+            LinkedListItem *previousItem = findNeighborInFront(firstItem, nameOfItemToRemove);
+            linkItems(previousItem, item->next);
+            printBillboard("Deleted an item from the list", 'x', 40, true);
+            std::cout << item->name << " was deleted from the list" << std::endl;
+            if (item->next != nullptr) {
+                std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
+            } else {
+                std::cout << previousItem->name << " is not linked to anyone (it's last in the list) " << std::endl;
+            }
+        } else {
+            printBillboard("Deleted an item from the list", 'x', 40, true);
+            std::cout << item->name << " was deleted from the list" << std::endl;
+        }
         printf("\n");
         delete (item);
     } else {
-        std::cout << "Your list hasn't changed" << std::endl;
+        printf("\nThat name doesn't exist. Please try another\n");
     }
 }
 
@@ -215,7 +225,7 @@ LinkedListItem *findItemByName(LinkedListItem *firstItem, std::string nameOfItem
     }
 }
 
-LinkedListItem *findNeighbordInFront(LinkedListItem *firstItem, std::string inFrontOfThisName) {
+LinkedListItem *findNeighborInFront(LinkedListItem *firstItem, std::string inFrontOfThisName) {
     LinkedListItem *currentItem = firstItem;
     while (currentItem->next->name != inFrontOfThisName) {
         currentItem = currentItem->next;
@@ -230,7 +240,7 @@ void printListNamesOnly(LinkedListItem *firstItem) {
         std::cout << currentItem->name << std::endl;
         currentItem = currentItem->next;
     }
-        std::cout << currentItem->name << std::endl;
+    std::cout << currentItem->name << std::endl;
 }
 
 bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind) {

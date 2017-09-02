@@ -3,39 +3,46 @@
 #include "LinkedList.h"
 #include "interactivity.h"
 #include <array>
+#include "typeinfo"
 
 int main() {
     char userInput;
     bool run = true;
-    bool autoGenerateList;
+    bool listIsGenerated = false;
     std::string stringInput;
 
-    std::array<std::string, 6> names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
+    std::array<std::string, 6> names;
     welcomeTitle();
 
     // create an empty pointer of LinkedList type
     LinkedList *newList;
-
-    while (autoGenerateList == NULL) {
+    int i = 0;
+    while (listIsGenerated == false) {
 
         // ask what type of list the user wants
         printf("Do you want to auto-generate (a) a list, or make one yourself?(m)");
         std::cin >> userInput;
-//        userInput == 'a' ? autoGenerateList = true : autoGenerateList = false;
         switch (userInput) {
             case 'a':
-                autoGenerateList = true;
+                listIsGenerated = true;
+                names =  {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
                 printf("\nMaking your list....\n\n");
                 newList = new LinkedList(names, true);
                 break;
             case 'm':
-                autoGenerateList = false;
-                printf("Please enter your own names");
-                std::cin >> stringInput;
+                listIsGenerated = true;
+                while (i < names.size()) {
+                    printf("Please enter a name, and press ENTER\n");
+                    prompt();
+                    std::cin >> stringInput;
+                    names[i] = stringInput;
+                    i++;
+                }
                 newList = new LinkedList(names, true);
                 break;
             default:
                 printf("\nThat's not an option. Please try again\n\n");
+                break;
         }
     }
 

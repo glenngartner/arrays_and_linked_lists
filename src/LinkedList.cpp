@@ -48,7 +48,12 @@ int LinkedList::printListLength() {
 }
 
 void LinkedList::removeListItemByName(std::string nameOfItemToRemove) {
-    removeItemByName(LinkedList::firstItem, nameOfItemToRemove);
+    // if you've named the list head, just delete the head directly
+    if (LinkedList::firstItem->name == nameOfItemToRemove) {
+        removeItemFromHead();
+    } else { // otherwise, find the item by name, delete, and shift its neighbors
+        removeItemByName(LinkedList::firstItem, nameOfItemToRemove); // delete the object
+    }
 }
 
 void LinkedList::whoIsMyHead() {
