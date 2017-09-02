@@ -6,7 +6,7 @@
 
 int main() {
     char userInput;
-    bool exit = false;
+    bool run = true;
     bool autoGenerateList;
     std::string stringInput;
 
@@ -25,26 +25,22 @@ int main() {
         switch (userInput) {
             case 'a':
                 autoGenerateList = true;
+                printf("\nMaking your list....\n\n");
+                newList = new LinkedList(names, true);
                 break;
             case 'm':
                 autoGenerateList = false;
+                printf("Please enter your own names");
+                std::cin >> stringInput;
+                newList = new LinkedList(names, true);
                 break;
             default:
                 printf("\nThat's not an option. Please try again\n\n");
         }
     }
 
-    // give them the list they want
-    if (autoGenerateList) {
-        printf("\nMaking your list....\n\n");
-        newList = new LinkedList(names, true);
-    } else {
-        printf("Please enter your own names");
-        std::cin >> stringInput;
-        newList = new LinkedList(names, true);
-    }
-
-    while (!exit) {
+    // while the program should run (not run)
+    while (run) {
         printOptions();
         std::cin >> userInput;
         switch (userInput) {
@@ -77,7 +73,7 @@ int main() {
                 newList->removeListItemByName(stringInput);
                 break;
             case 'x':
-                exit = true;
+                run = false;
                 break;
             default:
                 printf("\nsorry, that's not an option. try again\n");

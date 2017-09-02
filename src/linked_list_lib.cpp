@@ -13,18 +13,11 @@ LinkedListItem *makeListItem(std::string name) {
 
 void printAllItemInfo(LinkedListItem *item) {
     std::cout << item->name
-              << " >> address: " << &item
-              << " | size: " << sizeof(item)
+              << " >> address: " << item
+              << " | size: " << sizeof(*item)
               << " | value: " << item->value
               << " | neighbor: " << neighbor(item)
               << std::endl;
-
-
-//	printLinkedMemoryAddress(item);
-//	printSize(*item);
-//	printValue(item);
-//    neighbor(item);
-//    printf("             o-o   \n");
 }
 
 void linkItems(LinkedListItem *first, LinkedListItem *second) {
@@ -103,10 +96,6 @@ LinkedListItem *lastListItem(LinkedListItem *firstItem) {
 }
 
 void printEntireList(LinkedListItem *firstItem) {
-//    printf("List Details:\n");
-//    int length = listLength(firstItem);
-//    printDashedLine();
-//    printf("Length: \n", length);
     printBillboard("Full List With Details", '#', 25, true);
     LinkedListItem *itemInScope = firstItem;
     while (itemInScope->next != nullptr) {
@@ -160,8 +149,6 @@ LinkedListItem *removeHead(LinkedListItem *firstItem) {
     delete firstItem;
     std::cout << secondItem->name << " is now the first item in the list" << std::endl;
     printf("\n");
-//    printf("(Updating List)\n");
-//    printEntireList(secondItem);
     return secondItem;
 }
 
@@ -172,8 +159,6 @@ void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {
         printBillboard("Added new item to the head of the list.", '+', 50, true);
         linkItems(newFirstItem, firstItem);
         std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
-//    printf("updating list\n");
-//    printEntireList(newFirstItem);
         printAllItemInfo(newFirstItem);
         printf("Print the list to see the new changes\n");
     }
@@ -211,7 +196,6 @@ void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove)
         std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
         printf("\n");
         delete (item);
-//        printEntireList(firstItem);
     } else {
         std::cout << "Your list hasn't changed" << std::endl;
     }
