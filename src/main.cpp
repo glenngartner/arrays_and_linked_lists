@@ -20,31 +20,31 @@ int main() {
     while (listIsGenerated == false) {
 
         // ask what type of list the user wants
-        printf("Do you want to auto-generate (a) a list, or make one yourself?(m)");
+        printf(" Do you want to auto-generate a list(a), or make one yourself?(m)");
         std::cin >> userInput;
         switch (userInput) {
             case 'a':
                 listIsGenerated = true;
-                names =  {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
-                printf("\nMaking your list....\n\n");
-                newList = new LinkedList(names, true);
+                names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
+                printf("\n   Making your list....\n\n");
                 break;
             case 'm':
                 listIsGenerated = true;
                 while (i < names.size()) {
-                    printf("Please enter a name, and press ENTER\n");
+                    printf("   Please enter a name, and press ENTER\n");
                     prompt();
                     std::cin >> stringInput;
                     names[i] = stringInput;
                     i++;
                 }
-                newList = new LinkedList(names, true);
                 break;
             default:
-                printf("\nThat's not an option. Please try again\n\n");
+                printf("\n   That's not an option. Please try again\n\n");
                 break;
         }
     }
+    // create the new LinkedList object
+    newList = new LinkedList(names, true);
 
     // while the program should run (not run)
     while (run) {
@@ -74,7 +74,7 @@ int main() {
                 newList->removeItemFromTail();
                 break;
             case 'n':
-                printf("Which name do you want to remove?");
+                printf("   Which name do you want to remove?");
                 prompt();
                 std::cin >> stringInput;
                 newList->removeListItemByName(stringInput);
@@ -83,7 +83,7 @@ int main() {
                 run = false;
                 break;
             default:
-                printf("\nsorry, that's not an option. try again\n");
+                printf("\n   sorry, that's not an option. try again\n");
                 break;
         }
 

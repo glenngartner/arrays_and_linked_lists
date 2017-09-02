@@ -12,7 +12,7 @@ LinkedListItem *makeListItem(std::string name) {
 }
 
 void printAllItemInfo(LinkedListItem *item) {
-    std::cout << item->name
+    std::cout << "   " << item->name
               << " >> address: " << item
               << " | size: " << sizeof(*item)
               << " | value: " << item->value
@@ -57,12 +57,13 @@ void printArrayIndicesMemoryAddresses(std::array<int, 4> &myArray, std::string n
 }
 
 void printDashedLine() {
-    std::cout << "--------------------------------" << std::endl;
+    std::cout << "   --------------------------------" << std::endl;
 }
 
 void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose) {
     std::array<LinkedListItem *, 6> tempListItemArray;
     tempListItemArray[0] = firstItem;
+    printDashedLine();
     for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {
         LinkedListItem *newItem = makeListItem(names[i]); // make a new list item
@@ -70,7 +71,7 @@ void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &nam
         linkItems(tempListItemArray[i - 1], tempListItemArray[i]); // link this list item to the previous item
 
         if (verbose) {
-            std::cout << names[i - 1] << " was created and linked to " << names[i] << std::endl;
+            std::cout << "   " << names[i - 1] << " was created and linked to " << names[i] << std::endl;
         }
 
     }
@@ -107,16 +108,16 @@ void printEntireList(LinkedListItem *firstItem) {
 
 void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
     if (verifyNameExistsInList(firstItem, newItem->name)) {
-        printf("\n\nSorry, that name already exists. Try another one\n\n");
+        printf("\n\n   Sorry, that name already exists. Try another one\n\n");
     } else {
         LinkedListItem *lastItem = lastListItem(firstItem);
         linkItems(lastItem, newItem);
         LinkedListItem *newLastItem = lastListItem(firstItem);
         printBillboard("New item added to the end of the list", '+', 50, true);
         printAllItemInfo(newItem);
-        std::cout << lastItem->name << " was the last in the list.\nNow his new neighbor is " << newLastItem->name
+        std::cout << "\n   " << lastItem->name << " was the last in the list.\n   Now his new neighbor is " << newLastItem->name
                   << std::endl;
-        std::cout << newLastItem->name << " is now last in the list" << std::endl;
+        std::cout << "   " << newLastItem->name << " is now last in the list" << std::endl;
     }
 }
 
@@ -125,8 +126,8 @@ void removeTail(LinkedListItem *firstItem) {
     printBillboard("Deleted the last item in the list", 'x', 40, true);
 
     if (firstItem->next == nullptr) {
-        printf("There's only one item in the list, so I'm deleting nothing\n");
-        printf("Your list is unchanged\n");
+        printf("   There's only one item in the list, so I'm deleting nothing\n");
+        printf("   Your list is unchanged\n");
     } else {
         LinkedListItem *currentItem = firstItem;
         while (currentItem->next->next != nullptr) {
@@ -135,32 +136,32 @@ void removeTail(LinkedListItem *firstItem) {
         std::string nameToDelete = currentItem->next->name;
         delete currentItem->next;
         currentItem->next = nullptr;
-        std::cout << nameToDelete << " has been deleted" << std::endl;
+        std::cout << std::endl << "   " << nameToDelete << " has been deleted" << std::endl;
 
         LinkedListItem *newLastItem = lastListItem(firstItem);
-        std::cout << newLastItem->name << " is now the last in the list" << std::endl;
+        std::cout << "   " << newLastItem->name << " is now the last in the list" << std::endl;
     }
 }
 
 LinkedListItem *removeHead(LinkedListItem *firstItem) {
     printBillboard("Deleting the first item in the list", 'x', 40, true);
     LinkedListItem *secondItem = firstItem->next;
-    std::cout << firstItem->name << " was deleted from the beginning of the list" << std::endl;
+    std::cout << std::endl << "   " << firstItem->name << " was deleted from the beginning of the list" << std::endl;
     delete firstItem;
-    std::cout << secondItem->name << " is now the first item in the list" << std::endl;
+    std::cout << "   " << secondItem->name << " is now the first item in the list" << std::endl;
     printf("\n");
     return secondItem;
 }
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {
     if (verifyNameExistsInList(firstItem, newFirstItem->name)) {
-        printf("\n\nSorry, that name already exists. Try another one\n\n");
+        printf("\n\n   Sorry, that name already exists. Try another one\n\n");
     } else {
         printBillboard("Added new item to the head of the list.", '+', 50, true);
         linkItems(newFirstItem, firstItem);
-        std::cout << newFirstItem->name << " was added to the front of the list" << std::endl;
         printAllItemInfo(newFirstItem);
-        printf("Print the list to see the new changes\n");
+        std::cout << "\n   " << newFirstItem->name << " was added to the front of the list" << std::endl;
+        printf("   Print the list to see the new changes\n");
     }
 }
 
@@ -189,25 +190,26 @@ void removeItemByName(LinkedListItem *firstItem, std::string nameOfItemToRemove)
     if (verifyNameExistsInList(firstItem, nameOfItemToRemove)) {
         // return the item pointer, by searching for its name
         LinkedListItem *item = findItemByName(firstItem, nameOfItemToRemove);
-        if (firstItem->name !=nameOfItemToRemove) { // if you're deleting the list head, there's no previous item
+        if (firstItem->name != nameOfItemToRemove) { // if you're deleting the list head, there's no previous item
             // find the previous item, if one exists
             LinkedListItem *previousItem = findNeighborInFront(firstItem, nameOfItemToRemove);
             linkItems(previousItem, item->next);
             printBillboard("Deleted an item from the list", 'x', 40, true);
-            std::cout << item->name << " was deleted from the list" << std::endl;
+            std::cout << std::endl << "   " << item->name << " was deleted from the list" << std::endl;
             if (item->next != nullptr) {
-                std::cout << previousItem->name << " is now linked to " << item->next->name << std::endl;
+                std::cout << "   " << previousItem->name << " is now linked to " << item->next->name << std::endl;
             } else {
-                std::cout << previousItem->name << " is not linked to anyone (it's last in the list) " << std::endl;
+                std::cout << "   " << previousItem->name << " is not linked to anyone (it's last in the list) "
+                          << std::endl;
             }
         } else {
             printBillboard("Deleted an item from the list", 'x', 40, true);
-            std::cout << item->name << " was deleted from the list" << std::endl;
+            std::cout << "   " << item->name << " was deleted from the list" << std::endl;
         }
         printf("\n");
         delete (item);
     } else {
-        printf("\nThat name doesn't exist. Please try another\n");
+        printf("\n\n   That name doesn't exist. Please try another\n");
     }
 }
 
@@ -237,10 +239,10 @@ void printListNamesOnly(LinkedListItem *firstItem) {
     LinkedListItem *currentItem = firstItem;
     printBillboard("Full list by names", '=', 20, true);
     while (currentItem->next != nullptr) {
-        std::cout << currentItem->name << std::endl;
+        std::cout << "   " << currentItem->name << std::endl;
         currentItem = currentItem->next;
     }
-    std::cout << currentItem->name << std::endl;
+    std::cout << "   " << currentItem->name << std::endl;
 }
 
 bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind) {
