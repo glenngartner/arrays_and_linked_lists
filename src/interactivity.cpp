@@ -5,7 +5,7 @@
 #include "interactivity.h"
 #include "linked_list_lib.hpp"
 #include <iostream>
-#include <c++/sstream>
+#include <sstream>
 
 void prompt() {
     printf(" -->: ");

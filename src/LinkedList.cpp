@@ -29,7 +29,7 @@ void LinkedList::removeItemFromTail() {
     removeTail(LinkedList::firstItem);
 }
 
-LinkedListItem *LinkedList::removeItemFromHead() {
+void LinkedList::removeItemFromHead() {
     LinkedList::firstItem = removeHead(LinkedList::firstItem);
 }
 
@@ -44,7 +44,7 @@ void LinkedList::addItemToHeadByName(std::string newItemName) {
 }
 
 int LinkedList::printListLength() {
-    listLength(LinkedList::firstItem);
+    return listLength(LinkedList::firstItem);
 }
 
 void LinkedList::removeListItemByName(std::string nameOfItemToRemove) {

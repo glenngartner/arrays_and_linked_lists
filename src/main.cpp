@@ -58,7 +58,7 @@ int main() {
                         char model = rand() % 26 + 97;
                         std::string value = std::to_string(rand() % 100);
                         // read each value in the names vector
-                        for (int i = 0; i < names.size(); i++) {
+                        for (unsigned int i = 0; i < names.size(); i++) {
                             // if the random value (name) just generated matches the current value in the name vector
                             while (value == names[i]) {
                                 printBillboard("Duplicate found. We can't have that. Changing...", '!', 45, true);
@@ -99,7 +99,7 @@ int main() {
                         prompt();
                         std::cin >> stringInput;
                         // check for name duplicates
-                        for (int i = 0; i < names.size(); i++) {
+                        for (unsigned int i = 0; i < names.size(); i++) {
                             // if you find one, notify the user and request they enter a new one
                             // remain in this loop until they choose a unique one
                             while (stringInput == names[i]) {

@@ -25,7 +25,7 @@ public:
 
     void removeItemFromTail();
 
-    LinkedListItem* removeItemFromHead();
+    void removeItemFromHead();
 
     void removeListItemByName(std::string nameOfItemToRemove);
 
