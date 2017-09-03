@@ -115,10 +115,8 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
         LinkedListItem *newLastItem = lastListItem(firstItem);
         printBillboard("New item added to the end of the list", '+', 50, true);
         printAllItemInfo(newItem);
-        std::cout << "\n   " << lastItem->name << " was the last in the list.\n   Now his new neighbor is "
-                  << newLastItem->name
+        std::cout << "\n   " << lastItem->name << " was the last in the list.\n   Now it's " << newLastItem->name
                   << std::endl;
-        std::cout << "   " << newLastItem->name << " is now last in the list" << std::endl;
     }
 }
 
