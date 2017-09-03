@@ -12,5 +12,6 @@ void prompt();
 void printOptions();
 void nameNewItem();
 char stringToChar(std::string stringInput);
+bool onlyInt(const char *output);
 
 #endif //LINKED_LISTS_INTERACTIVITY_H

@@ -115,7 +115,8 @@ void addToTail(LinkedListItem *firstItem, LinkedListItem *newItem) {
         LinkedListItem *newLastItem = lastListItem(firstItem);
         printBillboard("New item added to the end of the list", '+', 50, true);
         printAllItemInfo(newItem);
-        std::cout << "\n   " << lastItem->name << " was the last in the list.\n   Now his new neighbor is " << newLastItem->name
+        std::cout << "\n   " << lastItem->name << " was the last in the list.\n   Now his new neighbor is "
+                  << newLastItem->name
                   << std::endl;
         std::cout << "   " << newLastItem->name << " is now last in the list" << std::endl;
     }
@@ -126,8 +127,9 @@ void removeTail(LinkedListItem *firstItem) {
     printBillboard("Deleted the last item in the list", 'x', 40, true);
 
     if (firstItem->next == nullptr) {
-        printf("   There's only one item in the list, so I'm deleting nothing\n");
-        printf("   Your list is unchanged\n");
+        printf("   There's only one item in the list, and I'm not deleting him\n");
+        puts("   If you want to reset the head, restart the app");
+        printf("   Otherwise, try another option\n");
     } else {
         LinkedListItem *currentItem = firstItem;
         while (currentItem->next->next != nullptr) {
@@ -144,13 +146,21 @@ void removeTail(LinkedListItem *firstItem) {
 }
 
 LinkedListItem *removeHead(LinkedListItem *firstItem) {
-    printBillboard("Deleting the first item in the list", 'x', 40, true);
-    LinkedListItem *secondItem = firstItem->next;
-    std::cout << std::endl << "   " << firstItem->name << " was deleted from the beginning of the list" << std::endl;
-    delete firstItem;
-    std::cout << "   " << secondItem->name << " is now the first item in the list" << std::endl;
-    printf("\n");
-    return secondItem;
+    if (firstItem->next == nullptr || firstItem == NULL) {
+        puts("\n\nThere's only 1 item in this list, so I'm not deleting him");
+        puts("If you want to reset the head, restart the app");
+        puts("Otherwise, try another option");
+        return firstItem;
+    } else {
+        printBillboard("Deleting the first item in the list", 'x', 40, true);
+        LinkedListItem *secondItem = firstItem->next;
+        std::cout << std::endl << "   " << firstItem->name << " was deleted from the beginning of the list"
+                  << std::endl;
+        delete firstItem;
+        std::cout << "   " << secondItem->name << " is now the first item in the list" << std::endl;
+        printf("\n");
+        return secondItem;
+    }
 }
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem) {

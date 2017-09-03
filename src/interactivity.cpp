@@ -5,6 +5,7 @@
 #include "interactivity.h"
 #include "linked_list_lib.hpp"
 #include <iostream>
+#include <c++/sstream>
 
 void prompt() {
     printf(" -->: ");
@@ -13,7 +14,7 @@ void prompt() {
 void printOptions() {
     printf("\n\n");
     printBorder('.', 35);
-    printf("\n What next? Here're your options:\n");
+    printf("\n What next? Here're your options:\n\n");
     printf(" (p) print a list of item names\n");
     printf(" (v) print a list with all details\n");
     printf(" (H) add an item to the head\n");
@@ -21,6 +22,7 @@ void printOptions() {
     printf(" (h) remove an item from the head\n");
     printf(" (t) remove an item from the tail\n");
     printf(" (n) remove an item by name\n");
+    printf(" (r) restart & generate a new list\n");
     printf(" (x) exit the app\n");
     printBorder('.', 35);
     printf("\n");
@@ -46,4 +48,25 @@ char stringToChar(std::string stringInput){
         userInput = stringInput[0];
     }
     return userInput;
+}
+
+bool onlyInt(const char *output) {
+        int check;
+        std::string user_input;
+//        std::cout<<output<<std::endl;
+        while(1)
+        {
+            getline(std::cin,user_input);//gets user input as a string
+            std::stringstream convert(user_input);//makes string into a stream
+            if(convert >> check &&!(convert >> user_input))//checking for valid conversion and any rejects if any unconverted input left
+            {
+                return true;
+            }
+            else
+            {
+                std::cin.clear();
+                std::cout<<"ERROR!\nwrong input\nPlease enter a NATURAL NUMBER only"<<std::endl;
+                return false;
+            }
+        }
 }
