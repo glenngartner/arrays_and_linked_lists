@@ -35,3 +35,15 @@ void nameNewItem() {
     printf(" What would you like to name your new item?\n");
     prompt();
 }
+
+char stringToChar(std::string stringInput){
+    char userInput;
+    // parse the user input, making sure they only enter 1 letter.
+    if (stringInput.length() != 1){
+        printf("\n\n   One letter only, please.\n   Try again.\n\n");
+        userInput = -1;
+    } else {
+        userInput = stringInput[0];
+    }
+    return userInput;
+}

@@ -5,6 +5,7 @@
 #include <array>
 #include "typeinfo"
 
+
 int main() {
     char userInput;
     bool run = true;
@@ -14,14 +15,17 @@ int main() {
     std::array<std::string, 6> names;
     welcomeTitle();
 
-    // create an empty pointer of LinkedList type
+    // create an empty pointer of LinkedList type. we'll initialize this later
     LinkedList *newList;
     int i = 0;
     while (listIsGenerated == false) {
 
         // ask what type of list the user wants
         printf(" Do you want to auto-generate a list(a), or make one yourself?(m)");
-        std::cin >> userInput;
+
+        // parse the user input, making sure they only enter 1 letter.
+        std::getline(std::cin, stringInput);
+        userInput = stringToChar(stringInput);
         switch (userInput) {
             case 'a':
                 listIsGenerated = true;
@@ -38,6 +42,8 @@ int main() {
                     i++;
                 }
                 break;
+            case -1:
+                break;
             default:
                 printf("\n   That's not an option. Please try again\n\n");
                 break;
@@ -46,10 +52,11 @@ int main() {
     // create the new LinkedList object
     newList = new LinkedList(names, true);
 
-    // while the program should run (not run)
+    // while the program should run
     while (run) {
         printOptions();
-        std::cin >> userInput;
+        std::getline(std::cin, stringInput);
+        userInput = stringToChar(stringInput);
         switch (userInput) {
             case 'p':
                 newList->printList(false);
@@ -81,6 +88,8 @@ int main() {
                 break;
             case 'x':
                 run = false;
+                break;
+            case -1:
                 break;
             default:
                 printf("\n   sorry, that's not an option. try again\n");
