@@ -64,7 +64,7 @@ int main() {
                                 printBillboard("Duplicate found. We can't have that. Changing...", '!', 45, true);
                                 std::cout << "this name already existed: " << value << std::endl;
                                 // generate a new name
-                                char model = rand() % 26 + 97;
+                                model = rand() % 26 + 97;
                                 value = std::to_string(rand() % 100);
                                 std::cout << "Changed to: " << value << std::endl;
                             }
