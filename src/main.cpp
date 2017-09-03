@@ -54,8 +54,9 @@ int main() {
                     // create some random values
                     for (int i = 0; i < autoGenListLength; i++) {
                         // create a random string number, instead of unique name
-                        char randomModel = (int) 87;
-                        std::string value = "droid_" + std::to_string(randomModel) + "_" + std::to_string(rand() % 100);
+                        std::string root = "droid_";
+                        char model = rand() % 26 + 97;
+                        std::string value = std::to_string(rand() % 100);
                         // read each value in the names vector
                         for (int i = 0; i < names.size(); i++) {
                             // if the random value (name) just generated matches the current value in the name vector
@@ -63,11 +64,13 @@ int main() {
                                 printBillboard("Duplicate found. We can't have that. Changing...", '!', 45, true);
                                 std::cout << "this name already existed: " << value << std::endl;
                                 // generate a new name
-                                value = "droid_model_" + std::to_string(rand() % 100);
+                                char model = rand() % 26 + 97;
+                                value = std::to_string(rand() % 100);
                                 std::cout << "Changed to: " << value << std::endl;
                             }
                         }
-                        names.push_back(value);
+                        std::string combined = root + model + "_" + value;
+                        names.push_back(combined);
                     }
                     listIsGenerated = true;
 //                names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
