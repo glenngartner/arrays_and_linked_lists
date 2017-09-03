@@ -15,10 +15,10 @@ If you want to generate project files for your IDE of choice (Visual Studio solu
 {project_root}/build> cmake .. # direct cmake up one directory, to the project root, where the CMakeLists.txt file resides
 ```
 
-Cmake will generate project files, and deposit them in the build folder (or the folder you launched CMake from). Now you can open and build the project in your IDE.
+Cmake will generate project files, and deposit them in the build folder (or the folder you launched CMake from). Now you can open and compile the project in your IDE.
 
 ### Compile
-Compile the project in your IDE. If you chose UNIX Makefiles during cmake configuration, the run make from the build directory: 
+Compile the project in your IDE. If you chose UNIX Makefiles during cmake configuration, then run make from the build directory: 
 ```bash
 {project_root}/build> make .
 ``` 
