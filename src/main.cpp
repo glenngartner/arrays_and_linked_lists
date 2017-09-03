@@ -11,8 +11,10 @@ int main() {
     bool run = true;
     bool listIsGenerated = false;
     std::string stringInput;
+    int autoGenListLength;
 
-    std::array<std::string, 6> names;
+//    std::array<std::string, 6> names;
+    std::vector<std::string> names;
     welcomeTitle();
 
     // create an empty pointer of LinkedList type. we'll initialize this later
@@ -28,18 +30,29 @@ int main() {
         userInput = stringToChar(stringInput);
         switch (userInput) {
             case 'a':
+                puts("I'm going to randomly generate some items for you");
+                puts("How many do you want?");
+                std::cin >> autoGenListLength;
+                // create some random values
+                for (int i = 0; i < autoGenListLength; i++) {
+                    std::string value = std::to_string(100 * rand());
+
+                    names.push_back(value);
+                }
                 listIsGenerated = true;
-                names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
+//                names = {"Carl", "Butch", "Mark", "Steve", "Harvey", "Rich"};
                 printf("\n   Making your list....\n\n");
                 break;
             case 'm':
                 listIsGenerated = true;
-                while (i < names.size()) {
+                puts("How many names do you want to enter?");
+                prompt();
+                std::cin >> autoGenListLength;
+                for (int i = 0; i < autoGenListLength; i++) {
                     printf("   Please enter a name, and press ENTER\n");
                     prompt();
                     std::cin >> stringInput;
-                    names[i] = stringInput;
-                    i++;
+                    names.push_back(stringInput);
                 }
                 break;
             case -1:
@@ -55,7 +68,7 @@ int main() {
     // while the program should run
     while (run) {
         printOptions();
-        std::getline(std::cin, stringInput);
+        std::cin >> stringInput;
         userInput = stringToChar(stringInput);
         switch (userInput) {
             case 'p':
@@ -97,16 +110,6 @@ int main() {
         }
 
     }
-
-//    newList->printList(false);
-//    newList->addItemToTailByName("Duke");
-//    newList->addItemToTailByName("Mike");
-//    newList->removeItemFromTail();
-//    newList->removeItemFromHead();
-//    newList->addItemToHeadByName("Becky");
-//    newList->removeListItemByName("Dirk");
-//    newList->whoIsMyHead();
-//    newList->printItemDetailsByName("Duke");
 
     return 0;
 }

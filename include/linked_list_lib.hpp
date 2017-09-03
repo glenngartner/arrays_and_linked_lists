@@ -59,7 +59,7 @@ LinkedListItem *findNeighborInFront(LinkedListItem *firstItem, std::string inFro
 
 void addToHead(LinkedListItem *firstItem, LinkedListItem *newFirstItem);
 
-void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose);
+void createLinkedList(LinkedListItem *firstItem, std::vector<std::string> &names, bool verbose);
 
 bool verifyNameExistsInList(LinkedListItem *firstItem, std::string nameToFind);
 

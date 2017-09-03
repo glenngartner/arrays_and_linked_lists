@@ -60,14 +60,14 @@ void printDashedLine() {
     std::cout << "   --------------------------------" << std::endl;
 }
 
-void createLinkedList(LinkedListItem *firstItem, std::array<std::string, 6> &names, bool verbose) {
-    std::array<LinkedListItem *, 6> tempListItemArray;
-    tempListItemArray[0] = firstItem;
+void createLinkedList(LinkedListItem *firstItem, std::vector<std::string> &names, bool verbose) {
+    std::vector<LinkedListItem *> tempListItemArray;
+    tempListItemArray.push_back(firstItem);
     printDashedLine();
     for (int i = 1; i < names.size(); i++) // start the loop at 1, since we've already created the first item
     {
         LinkedListItem *newItem = makeListItem(names[i]); // make a new list item
-        tempListItemArray[i] = newItem; // store the address of the new item in the temporary array
+        tempListItemArray.push_back(newItem); // store the address of the new item in the temporary array
         linkItems(tempListItemArray[i - 1], tempListItemArray[i]); // link this list item to the previous item
 
         if (verbose) {

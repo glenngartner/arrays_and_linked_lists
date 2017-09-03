@@ -5,7 +5,7 @@
 #ifndef LINKED_LISTS_INTERACTIVITY_H
 #define LINKED_LISTS_INTERACTIVITY_H
 
-#include "string";
+#include "string"
 
 void welcomeTitle();
 void prompt();

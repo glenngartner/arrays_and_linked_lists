@@ -6,8 +6,7 @@
 #include "linked_list_lib.hpp"
 #include <iostream>
 #include <string>
-
-LinkedList::LinkedList(std::array<std::string, 6> &names, bool verbose) {
+LinkedList::LinkedList(std::vector<std::string> &names, bool verbose) {
     LinkedList::firstItem = makeListItem(names[0]);
     createLinkedList(LinkedList::firstItem, names, verbose);
 }
@@ -18,6 +17,7 @@ void LinkedList::printList(bool verbose) {
     } else {
         printListNamesOnly(LinkedList::firstItem);
     }
+    std::cout << "\nThe list contains " << listLength(LinkedList::firstItem) << " items.";
 }
 
 void LinkedList::addItemToTailByName(std::string name) {
@@ -70,5 +70,6 @@ void LinkedList::printItemDetailsByName(std::string itemName) {
         std::string printString = "Details on " + item->name;
         printBillboard(printString, '.', 20, true);
         printAllItemInfo(item);
+        std::cout << "\nThe list contains " << listLength(LinkedList::firstItem) << " items.";
     }
 }

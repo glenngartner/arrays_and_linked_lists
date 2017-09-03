@@ -11,7 +11,7 @@
 
 class LinkedList {
 public:
-    LinkedList(std::array<std::string, 6> &names, bool verbose);
+    LinkedList(std::vector<std::string> &names, bool verbose);
 
     LinkedListItem* firstItem;
 
